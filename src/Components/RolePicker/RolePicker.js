@@ -6,6 +6,7 @@ const RolePicker = props => {
         setRolePick(e.target.value)
     }
     if (rolePick){
+        console.log('setting role');
         props.setRole(rolePick);
     }
     return(
@@ -13,8 +14,8 @@ const RolePicker = props => {
             <option className='townsfolk' value='washerwoman'>Washerwoman</option>
             <option className='townsfolk' value='librarian'>Librarian</option>
             <option className='townsfolk' value='investigator'>Investigator</option>
-            <option className='townsfolk' value='Chef'>Chef</option>
-            <option className='townsfolk' value='Empath'>Empath</option>
+            <option className='townsfolk' value='chef'>Chef</option>
+            <option className='townsfolk' value='empath'>Empath</option>
             <option className='townsfolk' value='fortuneTeller'>Fortune Teller</option>
             <option className='townsfolk' value='undertaker'>Undertaker</option>
             <option className='townsfolk' value='monk'>Monk</option>
@@ -29,7 +30,7 @@ const RolePicker = props => {
             <option className='outsider' value='saint'>Saint</option>
             <option className='minion' value='poisoner'>Poisoner</option>
             <option className='minion' value='spy'>Spy</option>
-            <option className='minion' value='Baron'>Baron</option>
+            <option className='minion' value='baron'>Baron</option>
             <option className='minion' value='scarletWoman'>Scarlet Woman</option>
             <option className='demon' value='imp'>Imp</option>
         </select>
