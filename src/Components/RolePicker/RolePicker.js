@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
+import roles from '../../data/roles';
+import RoleOption from '../RoleOption/RoleOption';
 
 const RolePicker = props => {
-    const [rolePick, setRolePick] = useState(null);
+
     const handleChange= e =>{
-        setRolePick(e.target.value)
-    }
-    if (rolePick){
         console.log('setting role');
-        props.setRole(rolePick);
+        props.setRole(roles.find(({name}) => name === e.target.value));
     }
+
     return(
         <select onChange={handleChange}>
-            <option className='townsfolk' value='washerwoman'>Washerwoman</option>
+            {roles.map(role => { return <RoleOption role={role}/>})}
+            {/* <option className='townsfolk' value='washerwoman'>Washerwoman</option>
             <option className='townsfolk' value='librarian'>Librarian</option>
             <option className='townsfolk' value='investigator'>Investigator</option>
             <option className='townsfolk' value='chef'>Chef</option>
@@ -32,7 +33,7 @@ const RolePicker = props => {
             <option className='minion' value='spy'>Spy</option>
             <option className='minion' value='baron'>Baron</option>
             <option className='minion' value='scarletWoman'>Scarlet Woman</option>
-            <option className='demon' value='imp'>Imp</option>
+            <option className='demon' value='imp'>Imp</option> */}
         </select>
     )
 }

@@ -3,14 +3,18 @@ import RolePicker from '../RolePicker/RolePicker';
 import roles from '../../data/roles';
 
 const Player = props => {
-    const [role, setRole] = useState(null);
-    console.log(roles);
+    const [role, setRole] = useState({});
+    console.log(role);
     return(
         <div>
         	<RolePicker 
-        	    setRole={setRole}
+                setRole={setRole}
+                rolesInGame={props.rolesInGame}
         	/>
-        	<h1>I am {role}</h1>
+        	{role.name ? <h1>I am {role.name}</h1>: <h1>Waiting</h1>}
+            <ul>
+                {}
+            </ul>
         </div>
     )
 }

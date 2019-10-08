@@ -1,14 +1,14 @@
 let Role = class{
-    constructor(name, type, alive, hasVote, firstNight, firstNightMessage, message, poisoned, drunk, redHerring, hasAbility, ability){
+    constructor(name, alignment, alive, hasVote, firstNight, firstNightMessage, message, poisoned, drunk, redHerring, hasAbility, ability){
         this.name = name;
-        this.type = type;
+        this.alignment = alignment;
         this.alive = alive;
         this.hasVote = hasVote;
         this.firstNight = firstNight;
         this.firstNightMessage = firstNightMessage;
         this.message = message;
         this.poisoned = poisoned;
-        this.deunk = drunk;
+        this.drunk = drunk;
         this.redHerring = redHerring;
         this.hasAbility = hasAbility;
         this.ability = ability;
@@ -22,8 +22,14 @@ let Washerwoman = new Role('washerwoman', 'townsfolk', true, true, true, 'You po
 let Librarian = new Role('librarian', 'townsfolk', true, true, true, 'You point at two players and give librarian an outsider class of one of them.', 'Skip the rest of nights', false, false, false, null, null);
 
 // -Investigator: 1 "Minion", 1 "Wrong"
+let Investigator = new Role('investigator', 'townsfolk', true, true, true, 'You point at two players and give investigator minion class of one of them', 'Skip the rest of nights', false, false, false, null, null);
+
 // -Chef
+let Chef = new Role('chef', 'townsfolk', true, true, true, 'You give the number of evil players next to each other', 'You give the number of evil players next to each other', false, false, false, null, null);
+
 // -Empath
+let Empath = new Role('empath', 'townsfolk', true, true, true, 'You give the number of evil players next empath', 'You give the number of evil players next to empath', false, false, false, null, null);
+
 // -Fortune Teller: 1 "Red Herring"
 // -Undertaker: 1 "Died Today"
 // -Monk: 1 "Safe"
@@ -48,8 +54,8 @@ let Librarian = new Role('librarian', 'townsfolk', true, true, true, 'You point 
 // Demon
 // -Imp: 1 "Attacked"
 const roles = [
-    Washerwoman,
-    Librarian,
+    Washerwoman, Librarian, Investigator, Chef, Empath
+
 ]
 
 export default roles;
