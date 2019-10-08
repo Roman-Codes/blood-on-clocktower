@@ -5,7 +5,12 @@ const Field = props =>{
     const players = [];
     const buildFiled = number =>{
         for (let i = 0; i < number; i++){
-            players.push(<Player rolesInGame={props.rolesInGame}/>);
+            players.push(
+                <Player 
+                    rolesInGame={props.rolesInGame}
+                    addRole={props.addRole}
+                    removeRole={props.removeRole}
+                />);
         }
     }
     buildFiled(props.numPlayers);

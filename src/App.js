@@ -8,11 +8,20 @@ const App = props =>{
 
     const [numPlayers, setNumPlayers] = useState(0);
 
+    const [playerNames, setPlayerNames] = useState([]);
+
     const [rolesInGame, setRolesInGame] = useState([]);
 
+    // add role to play
     const addRole = role => {
         const currentRoles = [...rolesInGame];
         currentRoles.push(role);
+        setRolesInGame(currentRoles);
+    }
+    // remove role from play
+    const removeRole = roleToRemove => {
+        let currentRoles = [...rolesInGame];
+        currentRoles = currentRoles.filter( role => role !== roleToRemove);
         setRolesInGame(currentRoles);
     }
 
@@ -23,7 +32,10 @@ const App = props =>{
             {numPlayers?
             <Field 
                 numPlayers={numPlayers}
+                playerNames={playerNames}
                 rolesInGame={rolesInGame}
+                addRole={addRole}
+                removeRole={removeRole}
             />:
             <h3>Pick number of players</h3>}
         </div>

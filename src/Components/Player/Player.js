@@ -4,14 +4,24 @@ import roles from '../../data/roles';
 
 const Player = props => {
     const [role, setRole] = useState({});
-    console.log(role);
+
+    const handleClick = e => {
+        e.preventDefault();
+        setRole({});
+        props.removeRole(role.name);
+    }
     return(
         <div>
+            {!role.name 
+                ? 
         	<RolePicker 
                 setRole={setRole}
                 rolesInGame={props.rolesInGame}
-        	/>
-        	{role.name ? <h1>I am {role.name}</h1>: <h1>Waiting</h1>}
+                addRole={props.addRole}
+            /> 
+                :
+            <button onClick={handleClick}> Unrole me </button>}
+        	{role.name ? <h1>I am {role.name}</h1>: <h2>Please Pick a role.</h2>}
             <ul>
                 {}
             </ul>

@@ -16,6 +16,7 @@ const NumPlayersPicker = props =>{
 
     return(
         <select onChange={handleChange}>
+            <option selected="true" disabled="disabled">0</option>
             <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
