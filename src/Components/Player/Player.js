@@ -1,27 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RolePicker from '../RolePicker/RolePicker';
 import roles from '../../data/roles';
+import NamePicker from '../NamePicker/NamePicker';
 
-const Player = props => {
+const Player = ({ rolesInGame, removeRole,addRole, numPlayers, playerNames}) => {
     const [role, setRole] = useState({});
+    const [name, setName] = useState('');
 
-    const handleClick = e => {
-        e.preventDefault();
+    const clearMyRole = () => {
         setRole({});
-        props.removeRole(role.name);
+        removeRole(role.name);
     }
+
+    const clearMyName = () => {
+        setName('');
+    }
+
+    const handleRoleRemove = e => {
+        e.preventDefault();
+        clearMyRole();
+    }
+
+    const handleNameNameRemove = e =>{
+        e.preventDefault();
+        clearMyName();
+    }
+
+    useEffect( () => {
+        clearMyRole();
+    }, [numPlayers])
+    
     return(
         <div>
-            {!role.name 
-                ? 
+            {!role.name? 
         	<RolePicker 
                 setRole={setRole}
-                rolesInGame={props.rolesInGame}
-                addRole={props.addRole}
-            /> 
-                :
-            <button onClick={handleClick}> Unrole me </button>}
-        	{role.name ? <h1>I am {role.name}</h1>: <h2>Please Pick a role.</h2>}
+                rolesInGame={rolesInGame}
+                addRole={addRole}
+            />:
+            <button onClick={handleRoleRemove}> Change Role </button>}
+
+            {!name?
+            <NamePicker
+                setName={setName}
+                playerNames={playerNames}
+            />:
+            <button onClick={clearMyName}>Change Name</button>}
+
+        	{role.name ? <h3>I am {name} and my role is {role.name}</h3>: <h2>Please Pick a role.</h2>}
             <ul>
                 {}
             </ul>

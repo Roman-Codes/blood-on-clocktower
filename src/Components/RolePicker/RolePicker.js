@@ -19,13 +19,16 @@ const RolePicker = props => {
     }
 
     return(
-        <select onChange={handleChange}>
-            <option selected="true" disabled="disabled">Choose Role</option>
-            {availableRoles.map(role => {
-                    return <RoleOption role={role} />
-                }
-            )}
-        </select>
+
+        <div>
+        	<select id="char" onChange={handleChange}>
+        	    <option selected="true" disabled="disabled">Choose Role</option>
+        	    {availableRoles.map(role => {
+        	            return <RoleOption role={role} />
+        	        }
+        	    )}
+        	</select>
+        </div>
     )
 }
 

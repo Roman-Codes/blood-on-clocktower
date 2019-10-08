@@ -4,15 +4,8 @@ const NumPlayersPicker = props =>{
 
     const handleChange = e =>{
         props.setNumPlayers(e.target.value);
+        props.clearAllRoles();
     }
-    
-    // const playerNumbers = [];
-
-    // const renderPlayerNumberPicker = number =>{
-    //     for (let i = 0; i < number; i++){
-    //         platerNumbers.push()
-    //     }
-    // }
 
     return(
         <select onChange={handleChange}>

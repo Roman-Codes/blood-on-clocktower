@@ -3,6 +3,8 @@ import './App.css';
 import Field from './Components/Field/Field';
 import NumPlayersPicker from './Components/NumPlayersPicker/NumPlayersPicker';
 import roles from './data/roles';
+import NameForm from './Components/NameForm/NameForm';
+import PlayersList from './Components/PlayersList/PlayersList';
 
 const App = props =>{
 
@@ -11,6 +13,7 @@ const App = props =>{
     const [playerNames, setPlayerNames] = useState([]);
 
     const [rolesInGame, setRolesInGame] = useState([]);
+
 
     // add role to play
     const addRole = role => {
@@ -25,10 +28,25 @@ const App = props =>{
         setRolesInGame(currentRoles);
     }
 
+    // clear all roles when the number of players changes
+    const clearAllRoles = () => {
+        setRolesInGame([]);
+    }
+
     return(
         <div>
             <h1>Welcome to blood on CT</h1>
-            <NumPlayersPicker setNumPlayers={setNumPlayers}/>
+            <NumPlayersPicker 
+                setNumPlayers={setNumPlayers}
+                clearAllRoles={clearAllRoles}
+            />
+            <NameForm
+                playerNames={playerNames}
+                setPlayerNames={setPlayerNames}
+            />
+            <PlayersList
+                playerNames={playerNames}
+            />
             {numPlayers?
             <Field 
                 numPlayers={numPlayers}
