@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RolePicker from '../RolePicker/RolePicker';
 import roles from '../../data/roles';
 import DrunkPicker from '../DrunkPicker/DrunkPicker';
+import EffectButton from '../EffectButton/EffectButton';
 // import NamePicker from '../NamePicker/NamePicker';
 
 const Player = ({ rolesInGame, removeRole, addRole, playerNames, playerIndex}) => {
@@ -48,22 +49,17 @@ const Player = ({ rolesInGame, removeRole, addRole, playerNames, playerIndex}) =
                     <button onClick={handleRoleRemove}> Change Role </button>
                     
                     <div className='effects'>
-                        {role.alive?
-                        <div>
-                            <div>Alive</div>
-                            <button onClick={()=>{handleEffectChange('alive')}}> Kill </button>
-                        </div>:
-                        <div>
-                            <div>Dead</div>
-                            <button onClick={()=>{handleEffectChange('alive')}}> Resurrect </button>
-                        </div>}
-                        {!role.poisoned?<div>
-                            <button onClick={() => {handleEffectChange('poisoned')}}> Poison </button>
-                        </div>:<div><div>Poisoned</div><button onClick={() => {handleEffectChange('poisoned')}}> Remove poison </button>
-                        </div>}
+                        <EffectButton
+                            role={role}
+                            effect={'alive'}
+                            handleEffectChange={handleEffectChange}
+                        />  
+                        <EffectButton
+                            role={role}
+                            effect={'poisoned'}
+                            handleEffectChange={handleEffectChange}
+                        />  
                     </div>
-
-
                 </div>
                 
                 }
