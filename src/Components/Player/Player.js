@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import RolePicker from '../RolePicker/RolePicker';
 import roles from '../../data/roles';
-import NamePicker from '../NamePicker/NamePicker';
+// import NamePicker from '../NamePicker/NamePicker';
 
-const Player = ({ rolesInGame, removeRole,addRole, numPlayers, playerNames}) => {
+const Player = ({ rolesInGame, removeRole,addRole, playerNames, playerIndex}) => {
     const [role, setRole] = useState({});
     const [name, setName] = useState('');
+
+    useEffect(()=>{
+        setName(playerNames[playerIndex]);
+    }, [])
 
     const clearMyRole = () => {
         setRole({});
@@ -26,12 +30,12 @@ const Player = ({ rolesInGame, removeRole,addRole, numPlayers, playerNames}) => 
         clearMyName();
     }
 
-    useEffect( () => {
-        clearMyRole();
-    }, [numPlayers])
+    // useEffect( () => {
+    //     clearMyRole();
+    // }, [playerNames.length]);
     
     return(
-        <div>
+        <div className='playerCard' >
             {!role.name? 
         	<RolePicker 
                 setRole={setRole}
@@ -40,12 +44,12 @@ const Player = ({ rolesInGame, removeRole,addRole, numPlayers, playerNames}) => 
             />:
             <button onClick={handleRoleRemove}> Change Role </button>}
 
-            {!name?
+            {/* {!name?
             <NamePicker
                 setName={setName}
                 playerNames={playerNames}
             />:
-            <button onClick={clearMyName}>Change Name</button>}
+            <button onClick={clearMyName}>Change Name</button>} */}
 
         	{role.name ? <h3>I am {name} and my role is {role.name}</h3>: <h2>Please Pick a role.</h2>}
             <ul>

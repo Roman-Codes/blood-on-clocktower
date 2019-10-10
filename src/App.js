@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import './App.css';
+import "./styles.scss";
 import Field from './Components/Field/Field';
 import NumPlayersPicker from './Components/NumPlayersPicker/NumPlayersPicker';
 import roles from './data/roles';
 import NameForm from './Components/NameForm/NameForm';
 import PlayersList from './Components/PlayersList/PlayersList';
+
 
 const App = props =>{
 
@@ -36,26 +37,26 @@ const App = props =>{
     return(
         <div>
             <h1>Welcome to blood on CT</h1>
-            <NumPlayersPicker 
-                setNumPlayers={setNumPlayers}
-                clearAllRoles={clearAllRoles}
-            />
+            
             <NameForm
                 playerNames={playerNames}
                 setPlayerNames={setPlayerNames}
+                numPlayers={numPlayers}
             />
+            
+            {playerNames.length < 5? /*here need to inser more logic for letting user know how many more players to pick */<h2>Pick more players.</h2>:true}
+            
             <PlayersList
                 playerNames={playerNames}
             />
-            {numPlayers?
+
             <Field 
                 numPlayers={numPlayers}
                 playerNames={playerNames}
                 rolesInGame={rolesInGame}
                 addRole={addRole}
                 removeRole={removeRole}
-            />:
-            <h3>Pick number of players</h3>}
+            />
         </div>
     )
 }

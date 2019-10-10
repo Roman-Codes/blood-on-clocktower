@@ -69,20 +69,20 @@ let Saint = new Role('Saint', 'outsider',  true, true, false, null, 'If executed
 
 // // Minions
 // -Poisoner: 1 "is Poisoned"
-let Poisoner = new Role('Poisoner', 'minion',  true, true, true, 'Chooses a player, that players ability malcunction next 24h.', 'Chooses a player, that players ability malcunction next 24h.', false, false, false, null, null);
+let Poisoner = new Role('Poisoner', 'minion',  true, true, true, 'Learn who the demon is.', 'Chooses a player, that players ability malcunction next 24h.', false, false, false, null, null);
 
 // -Spy
-let Spy = new Role('Spy', 'minion',  true, true, true, 'Each night you see the grimoire. May register as good, evil or outsider even if dead.', 'Each night you see the grimoire. May register as good, evil or outsider even if dead.', false, false, false, null, null);
+let Spy = new Role('Spy', 'minion',  true, true, true, 'Learn who the demon is.', 'Each night you see the grimoire. May register as good, evil or outsider even if dead.', false, false, false, null, null);
 
 // -Baron
-let Baron = new Role('Baron', 'minion',  true, true, false, null, 'Add 2 outsiders to the game, remove 2 townsfolks.', false, false, false, null, null);
+let Baron = new Role('Baron', 'minion',  true, true, true, 'Learn who the demon is.', 'Add 2 outsiders to the game, remove 2 townsfolks.', false, false, false, null, null);
 
 // -Scarlet Woman: 1 "is the Demon"
-let ScarletWoman = new Role('Scarlet Woman', 'minion',  true, true, false, null, null, false, false, false, true, 'If there are more then 5 players and demon dies you become demon.');
+let ScarletWoman = new Role('Scarlet Woman', 'minion',  true, true, true, 'Learn who the demon is.', null, false, false, false, true, 'If there are more then 5 players and demon dies you become demon.');
 
 // Demon
 // -Imp: 1 "Attacked"
-let Imp = new Role('Imp', 'minion',  true, true, false, null, 'Each night you attack a player, they die. If you attack yourself a minion becomes imp', false, false, false, null, null);
+let Imp = new Role('Imp', 'minion',  true, true, true, 'Learn who minions are and 3 roles not in play.', 'Each night you attack a player, they die. If you attack yourself a minion becomes imp', false, false, false, null, null);
 
 const roles = [
     Washerwoman, Librarian, Investigator, Chef, Empath, FortuneTeller, Undertaker, Monk, Ravenkeeper, Virgin, Slayer, Soldier, Mayor, Butler, Drunk, Recluse, Saint, Poisoner, Spy, Baron, ScarletWoman, Imp]
