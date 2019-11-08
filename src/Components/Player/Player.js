@@ -24,7 +24,6 @@ const Player = ({ rolesInGame, removeRole, addRole, playerNames, playerIndex}) =
     }
 
     const handleRoleRemove = e => {
-        e.preventDefault();
         clearMyRole();
     }
 
@@ -39,29 +38,28 @@ const Player = ({ rolesInGame, removeRole, addRole, playerNames, playerIndex}) =
             <fieldset className='playerCard'>
                 <legend>{name}</legend>
                 {role.name ? role.name === 'Drunk'? <h3>Drunk thinks he is <DrunkPicker roles={roles} rolesInGame={rolesInGame} /></h3> :<h3>{role.name}</h3>: <h2>Please Pick a role.</h2>}
-                {!role.name? 
-            	<RolePicker 
+                {!role.name?
+            	<RolePicker
                     setRole={setRole}
                     rolesInGame={rolesInGame}
                     addRole={addRole}
                 />:
                 <div>
                     <button onClick={handleRoleRemove}> Change Role </button>
-                    
+
                     <div className='effects'>
                         <EffectButton
                             role={role}
                             effect={'alive'}
                             handleEffectChange={handleEffectChange}
-                        />  
+                        />
                         <EffectButton
                             role={role}
                             effect={'poisoned'}
                             handleEffectChange={handleEffectChange}
-                        />  
+                        />
                     </div>
                 </div>
-                
                 }
             </fieldset>
         </div>

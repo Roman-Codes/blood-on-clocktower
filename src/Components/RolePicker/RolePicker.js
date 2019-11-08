@@ -5,16 +5,15 @@ import RoleOption from '../RoleOption/RoleOption';
 const RolePicker = props => {
 
     const handleChange = e =>{
-        console.log('setting role');
-        props.addRole(e.target.value);
-        props.setRole(roles.find(({name}) => name === e.target.value));
+        props.addRole(roles.find(role => role.name === e.target.value));
+        props.setRole(roles.find(role => role.name === e.target.value));
     }
 
     let availableRoles = roles;
 
     if (props.rolesInGame.length) {
         props.rolesInGame.forEach(takenRole =>  {
-            availableRoles = availableRoles.filter(role => role.name !== takenRole);
+            availableRoles = availableRoles.filter(role => role.name !== takenRole.name);
         });
     }
 

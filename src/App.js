@@ -14,12 +14,13 @@ const App = props =>{
     const [playerNames, setPlayerNames] = useState([]);
     const [rolesInGame, setRolesInGame] = useState([]);
     const [minions, setMinions] = useState([]);
-    const [firstNightOrder, setFirstNightOrder] = useState([['placeholder for minions'],'placeholder for demon']);
+    const [firstNightOrder, setFirstNightOrder] = useState([]);
+    const [restNightOrder, setRestNightOrder] = useState([]);
     const [turnData, setTurnData] = useState({
         number: 1,
-        dayTime: true,
-        nightTime: false
+        dayTime: true
     });
+    const [activePlayer, setActivePlayer] = useState([]);
 
     // add role to play
     const addRole = role => {
@@ -30,7 +31,7 @@ const App = props =>{
     // remove role from play
     const removeRole = roleToRemove => {
         let currentRoles = [...rolesInGame];
-        currentRoles = currentRoles.filter( role => role !== roleToRemove);
+        currentRoles = currentRoles.filter( role => role.name !== roleToRemove);
         setRolesInGame(currentRoles);
     }
 
@@ -41,61 +42,51 @@ const App = props =>{
 
     // this one here is to sort the incoming roles for the firs night order
     const sortFirstNight = (rolesArray) => {
-        
-        // const roleObj = roles.find( ({ name }) => name === newRole);
-        // let firstNightCopy = [...firstNightOrder];
-        // firstNightCopy.push(roleObj);
+        let firstNight = [[]];
+        const inFirstNight = rolesArray.filter( role => !!role.firstNightOrder);
 
-        // const minions = [];
-
-        // for (let i = 2; i < firstNightCopy.length; i++){
-        //     if (firstNightCopy[i].alignment === 'minion'){
-        //         minions.push(firstNightCopy[i]);
-        //     }
-        //     if (firstNightCopy[i].alignment === 'demon'){
-        //         firstNightCopy[1] = firstNightCopy[i];
-        //     }
-        // }
-
-        // // const demon = firstNightOrder.find( role => {
-        // //     return role.alignment === 'demon';
-        // // });
-        // firstNightCopy[0] = minions;
-        // //  = demon;
-        // setFirstNightOrder(firstNightCopy);
-        // console.log(firstNightOrder);
+        inFirstNight.forEach( role => {
+            if (role.alignment === 'minion') firstNight[0].push(role);
+            if (typeof(role.firstNightOrder) === 'number') firstNight[role.firstNightOrder] = role;
+        })
+        firstNight = firstNight.filter(role => role !== '');
+        setFirstNightOrder(firstNight);
     }
 
     // this one here sorts data for the first night when new roles are added or changed
     useEffect( () => {
         if(rolesInGame.length !== 0){
-            const roles = [...rolesInGame]
-            sortFirstNight(roles);
+            const rolesInGameCopy = [...rolesInGame]
+            sortFirstNight(rolesInGameCopy);
         }
     }, [rolesInGame])
 
     return(
         <div>
             <h1>Welcome to blood on CT</h1>
-            
+
             <NameForm
                 playerNames={playerNames}
                 setPlayerNames={setPlayerNames}
                 numPlayers={numPlayers}
             />
-            
+
             {playerNames.length < 5? /*here need to inser more logic for letting user know how many more players to pick */<h2>Pick more players.</h2>:true}
-            
+
             <TurnDisplay
                 turnData={turnData}
                 setTurnData={setTurnData}
+                firstNightOrder={firstNightOrder}
+                restNightOrder={restNightOrder}
+                activePlayer={activePlayer}
+                setActivePlayer={setActivePlayer}
             />
 
             <PlayersList
                 playerNames={playerNames}
             />
 
-            <Field 
+            <Field
                 numPlayers={numPlayers}
                 playerNames={playerNames}
                 rolesInGame={rolesInGame}
